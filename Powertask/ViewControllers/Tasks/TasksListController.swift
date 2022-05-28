@@ -3,6 +3,7 @@
 //  Powertask
 //
 //  Created by Daniel Torres on 14/1/22.
+//  Updated by Javier de Castro on 27/05/2022
 //
 
 import UIKit
@@ -20,28 +21,12 @@ class TasksListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userTasks = PTUser.shared.tasks
-        NetworkingProvider.shared.listTasks { tasks in
-            PTUser.shared.savePTUser()
-            self.userTasks = PTUser.shared.tasks
-            self.tasksTableView.reloadData()
-            print(tasks)
-        } failure: { msg in
-            print("ERROR-tasks")
-        }
-        
-        NetworkingProvider.shared.listSubjects { subjects in
-            PTUser.shared.subjects = subjects
-            self.subjects = PTUser.shared.subjects
-        } failure: { error in
-            print("ERROR-subjects")
-        }
+        syncTaskAndSubjects()
     }
     
             
     override func viewWillAppear(_ animated: Bool) {
-        print("appearing")
-        tasksTableView.reloadData()
+        syncTaskAndSubjects()
     }
     
     
@@ -91,7 +76,6 @@ extension TasksListController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let tasks = PTUser.shared.tasks {
-            print(tasks.count)
             return tasks.count
         }
         return 0
@@ -146,14 +130,41 @@ extension TasksListController {
             } else {
                 cell.doneButton.setImage(Constants.taskUndoneImage, for: .normal)
             }
-            if let date = task.startDate{
-                var datePicker = (Date(timeIntervalSince1970: TimeInterval(date)))
+            if task.date_handover != nil {
+                var datePicker = (Date(timeIntervalSince1970: TimeInterval(task.date_handover!)))
                 cell.taskDueDateLabel.text = datePicker.formatted(date: .long, time: .omitted)
             }
+            /*if let date = task.startDate{
+                var datePicker = (Date(timeIntervalSince1970: TimeInterval(date)))
+                cell.taskDueDateLabel.text = datePicker.formatted(date: .long, time: .omitted)
+            }*/
             // TODO: Pensar manera de diferenciar asignaturas
-            cell.courseColorImage.backgroundColor = UIColor(task.subject!.color)
+            if task.subject != nil{
+                cell.courseColorImage.backgroundColor = UIColor(task.subject!.color)
+            }else{
+                cell.courseColorImage.backgroundColor = UIColor("#DCA621")
+            }
         }
         return cell
+    }
+    
+    func syncTaskAndSubjects(){
+        userTasks = PTUser.shared.tasks
+        NetworkingProvider.shared.listTasks { tasks in
+            PTUser.shared.savePTUser()
+            self.userTasks = tasks
+            PTUser.shared.tasks = tasks
+            self.tasksTableView.reloadData()
+        } failure: { msg in
+            print("ERROR-tasks")
+        }
+        
+        NetworkingProvider.shared.listSubjects { subjects in
+            PTUser.shared.subjects = subjects
+            self.subjects = PTUser.shared.subjects
+        } failure: { error in
+            print("ERROR-subjects")
+        }
     }
 }
 

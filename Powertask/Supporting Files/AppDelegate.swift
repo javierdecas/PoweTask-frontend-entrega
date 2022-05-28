@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import GoogleSignIn
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         PTNetworkReachability.shared.startNetworkMonitoring()
         PTUser.shared.loadPTUser()
+        //Firebase included
+        FirebaseApp.configure()
         return true
     }
 

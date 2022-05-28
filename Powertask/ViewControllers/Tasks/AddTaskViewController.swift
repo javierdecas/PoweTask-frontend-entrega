@@ -3,9 +3,10 @@
 //  Powertask
 //
 //  Created by Daniel Torres on 18/1/22.
-//
+//  Updated by Javier de Castro on 26/05/2022
 
 import UIKit
+import FirebaseAnalytics
 
 // TODO: Validar campos de texto y poner limite de caracteres a la descripcion
 
@@ -100,11 +101,11 @@ class AddTaskViewController: UIViewController {
                 subjectButton.setTitle(subject.name, for: .normal)
 //                subjectButton.tintColor = UIColor(hex: subject.color)
             }
-            if let dueDate = task.startDate {
+            if let dueDate = task.date_start {
                 startDatePicker.setDate(Date(timeIntervalSince1970: TimeInterval(dueDate)), animated: false)
 //                startDatePicker.setDate(dueDate, animated: false)
             }
-            if let handoverDate = task.handoverDate {
+            if let handoverDate = task.date_handover {
                 handoverDatePicker.setDate(Date(timeIntervalSince1970: TimeInterval(handoverDate)), animated: false)
 //                startDatePicker.setDate(handoverDate, animated: false)
             }
@@ -175,11 +176,12 @@ class AddTaskViewController: UIViewController {
             userIsEdditing = false
             
             if newTask == true {
+                
                 if let task = userTask{
                     NetworkingProvider.shared.createTask(task: task, success: { taskId in
                         print("task create")
                     }, failure: { msg in
-                        print("error creaating task")
+                        print("error creating task")
                     })
                 }
             }else{
@@ -261,14 +263,17 @@ class AddTaskViewController: UIViewController {
             }
             // TODO: falta perform date
         } else {
-            var name = taskNameTextField.text
-            var description = descriptionTextView.text
-            var handoverDate = Int(handoverDatePicker.date.timeIntervalSince1970)
-            var startDate: Int?
-            if !startDatePicker.isHidden {
-                var startDate = Int(handoverDatePicker.date.timeIntervalSince1970)
-            }
-            userTask = PTTask(name: name!, startDate: startDate, handoverDate: handoverDate, description: description!, completed: 0, subject: nil, subtasks: nil)
+            let name = taskNameTextField.text
+            let description = descriptionTextView.text
+            let startDate :Int? = Int(handoverDatePicker.date.timeIntervalSince1970)
+            var handoverDate :Int? = Int(startDatePicker.date.timeIntervalSince1970)
+            /*if !startDatePicker.isHidden {
+                startDate = Int(startDatePicker.date.timeIntervalSince1970)
+            }*/
+            var subject :PTSubject? = subject
+            
+            userTask = PTTask(name: name!, date_start: startDate, date_handover: handoverDate, description: description!, completed: 0, subject: subject, subtasks: [])
+            analyticsIncludeTaskEvent(userTask!)
             delegate?.appendNewTask(newTask: userTask!)
         }
     }
@@ -303,9 +308,8 @@ extension AddTaskViewController: SubjectDelegate, SubtaskCellTextDelegate, Subta
     }
     
     func subjectWasChosen(_ newSubject: PTSubject) {
-        print("elegido")
         subjectButton.setTitle(newSubject.name, for: .normal)
-        subjectButton.tintColor = UIColor(newSubject.color) 
+        subjectButton.tintColor = UIColor(newSubject.color)
         subject = newSubject
         if let _ = userTask {
             userTask!.subject = newSubject
@@ -364,5 +368,10 @@ extension AddTaskViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func analyticsIncludeTaskEvent(_ newTask : PTTask){
+        //Analytics Event
+        Analytics.logEvent("TaskCreation", parameters: ["Name":newTask.name, "Subject":(newTask.subject?.name) ?? "No subject", "Description":newTask.description ?? "", "StartDate":newTask.date_start ?? 0, "HandoverDate": String(newTask.date_handover ?? 0)])
     }
 }

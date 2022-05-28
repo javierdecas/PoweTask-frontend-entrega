@@ -171,6 +171,7 @@ class NetworkingProvider {
     }
     
     public func createTask(task: PTTask, success: @escaping (_ taskId: Int)->(), failure: @escaping (_ msg: String?)->()) {
+        print(task)
         sessionManager.request(PTRouter.createTask(task)).validate(statusCode: statusOk).responseDecodable(of: PTResponse.self) { response in
             if let httpCode = response.response?.statusCode {
                 switch httpCode {
@@ -196,6 +197,7 @@ class NetworkingProvider {
     }
     
     public func editTask(task: PTTask, success: @escaping (_ msg: String?)->(), failure: @escaping (_ msg: String?)->()) {
+        print(task)
         sessionManager.request(PTRouter.editTask(task)).validate(statusCode: statusOk).responseDecodable(of: PTResponse.self) { response in
             if let httpCode = response.response?.statusCode {
                 switch httpCode {

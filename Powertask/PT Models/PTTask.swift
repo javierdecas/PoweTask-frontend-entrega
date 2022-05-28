@@ -3,8 +3,9 @@
 //  Powertask
 //
 //  Created by Daniel Torres on 18/1/22.
+//  Updated by Javier de Castro on 28/05/2022
 //
-// probando
+
 import Foundation
 import UIKit
 
@@ -12,8 +13,8 @@ struct PTTask: Codable {
     var id: Int?
     var google_id: String?
     var name: String
-    var startDate: Int?
-    var handoverDate: Int?
+    var date_start: Int?
+    var date_handover: Int?
     var mark: Float?
     var description: String?
     var completed: Int

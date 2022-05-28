@@ -55,8 +55,8 @@ enum PTRouter {
         return "/task/list"
     case .createTask:
         return "/task/create"
-    case .editTask(let task):
-        return "/task/edit/\(task.id)"
+    case .editTask:
+        return "/task/edit"
     case .deleteTask(let task):
         return "/task/delete/\(task.id)"
     case .toogleTask(let task):
@@ -131,13 +131,17 @@ enum PTRouter {
     case .createTask(let task), .editTask(let task):
         if let subjectId = task.subject?.id {
             return ["name" : task.name,
-                    "date_start" : "fecha de prueba",
+                    "date_start" : String(task.date_start!),
+                    "date_handover" : String(task.date_handover!),
                     "description" : task.description ?? "",
-                    "subject_id" : String(subjectId)]
+                    "subject_id" : String(subjectId),
+                    "completed" : String(task.completed)]
         } else {
             return ["name" : task.name,
-                    "date_start" : "fecha de prueba",
-                    "description" : task.description ?? ""]
+                    "date_start" : String(task.date_start!),
+                    "date_handover" : String(task.date_handover!),
+                    "description" : task.description ?? "",
+                    "completed" : String(task.completed)]
         }
         
     case .createEvent(let event), .editEvent(let event):

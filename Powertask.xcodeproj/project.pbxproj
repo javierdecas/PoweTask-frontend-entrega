@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C824467A26EFB43456C3B74 /* Pods_Powertask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02878DDC64D1F31C038854CC /* Pods_Powertask.framework */; };
 		7908767327BFAA5F00E9D0A4 /* PTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7908767227BFAA5F00E9D0A4 /* PTResponse.swift */; };
 		7908767527BFB25800E9D0A4 /* MockRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7908767427BFB25800E9D0A4 /* MockRequestViewController.swift */; };
 		7908768327BFC2DA00E9D0A4 /* PTSubtask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7908768227BFC2DA00E9D0A4 /* PTSubtask.swift */; };
@@ -81,6 +82,7 @@
 		79E44B3327F10533007B1B44 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E44B2E27F10532007B1B44 /* SessionsViewController.swift */; };
 		79E44B3427F10533007B1B44 /* SessionsTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E44B2F27F10532007B1B44 /* SessionsTasks.swift */; };
 		79E44B3527F10533007B1B44 /* SessionsCountDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E44B3027F10532007B1B44 /* SessionsCountDown.swift */; };
+		B0B9CA0728423929000C6A52 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0B9CA0628423929000C6A52 /* GoogleService-Info.plist */; };
 		B6A07F7227F0D37C00FADF90 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = B6A07F7127F0D37C00FADF90 /* FSCalendar */; };
 		B6A07F7527F0D3A700FADF90 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = B6A07F7427F0D3A700FADF90 /* GoogleSignIn */; };
 		B6A07F7827F0D3C000FADF90 /* UIColorHexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B6A07F7727F0D3C000FADF90 /* UIColorHexSwift */; };
@@ -101,6 +103,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02878DDC64D1F31C038854CC /* Pods_Powertask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Powertask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37CD4748647C4A9A6C327195 /* Pods-Powertask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Powertask.release.xcconfig"; path = "Target Support Files/Pods-Powertask/Pods-Powertask.release.xcconfig"; sourceTree = "<group>"; };
 		7908767227BFAA5F00E9D0A4 /* PTResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTResponse.swift; sourceTree = "<group>"; };
 		7908767427BFB25800E9D0A4 /* MockRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequestViewController.swift; sourceTree = "<group>"; };
 		7908768227BFC2DA00E9D0A4 /* PTSubtask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTSubtask.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 		79E44B2E27F10532007B1B44 /* SessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
 		79E44B2F27F10532007B1B44 /* SessionsTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsTasks.swift; sourceTree = "<group>"; };
 		79E44B3027F10532007B1B44 /* SessionsCountDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCountDown.swift; sourceTree = "<group>"; };
+		B0B9CA0628423929000C6A52 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B6D963ED27AB0F2400F8259D /* CalendarSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSettingsController.swift; sourceTree = "<group>"; };
 		B6D963F127AB121100F8259D /* PeriodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodsController.swift; sourceTree = "<group>"; };
 		B6D963F327AB123F00F8259D /* OtherCalendarsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCalendarsController.swift; sourceTree = "<group>"; };
@@ -187,6 +192,7 @@
 		B6EC335A27F0DD8E00FB85D0 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		B6EC336427F134A400FB85D0 /* SessionsConfigurationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsConfigurationCell.swift; sourceTree = "<group>"; };
 		B6EC336627F134AA00FB85D0 /* SessionsTasksCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsTasksCell.swift; sourceTree = "<group>"; };
+		EC4790FDE4C5C8C1D3D13780 /* Pods-Powertask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Powertask.debug.xcconfig"; path = "Target Support Files/Pods-Powertask/Pods-Powertask.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +207,7 @@
 				792EA9CF27DF4BEB009D9063 /* DynamicColor in Frameworks */,
 				B6A07F7227F0D37C00FADF90 /* FSCalendar in Frameworks */,
 				79C6471E27D36F2E000CB0E9 /* SPIndicator in Frameworks */,
+				3C824467A26EFB43456C3B74 /* Pods_Powertask.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +290,8 @@
 				7908767427BFB25800E9D0A4 /* MockRequestViewController.swift */,
 				797849152791865F00EB8C4C /* Powertask */,
 				797849142791865F00EB8C4C /* Products */,
+				D7BF82859F9176B6E6008D0D /* Pods */,
+				820B5F909769FDD803BC9CC4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -305,6 +314,7 @@
 				79784932279186AC00EB8C4C /* Supporting Files */,
 				797849222791866000EB8C4C /* Assets.xcassets */,
 				797849272791866000EB8C4C /* Info.plist */,
+				B0B9CA0628423929000C6A52 /* GoogleService-Info.plist */,
 				7978491F2791865F00EB8C4C /* Powertask.xcdatamodeld */,
 			);
 			path = Powertask;
@@ -487,6 +497,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		820B5F909769FDD803BC9CC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02878DDC64D1F31C038854CC /* Pods_Powertask.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B6D963FA27ABEBD400F8259D /* PeriodsCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,6 +525,16 @@
 			path = Periods;
 			sourceTree = "<group>";
 		};
+		D7BF82859F9176B6E6008D0D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC4790FDE4C5C8C1D3D13780 /* Pods-Powertask.debug.xcconfig */,
+				37CD4748647C4A9A6C327195 /* Pods-Powertask.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -514,9 +542,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7978492A2791866000EB8C4C /* Build configuration list for PBXNativeTarget "Powertask" */;
 			buildPhases = (
+				E77AC817F10F75ED05696DC0 /* [CP] Check Pods Manifest.lock */,
 				7978490F2791865F00EB8C4C /* Sources */,
 				797849102791865F00EB8C4C /* Frameworks */,
 				797849112791865F00EB8C4C /* Resources */,
+				D24B03D8010B1C086F8CEA0B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -561,13 +591,13 @@
 			);
 			mainGroup = 7978490A2791865F00EB8C4C;
 			packageReferences = (
-				79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator" */,
-				792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor" */,
-				798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors" */,
-				B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator.git" */,
+				792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor.git" */,
+				798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors.git" */,
+				B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar.git" */,
 				B6A07F7327F0D3A700FADF90 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				B6A07F7627F0D3C000FADF90 /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */,
-				B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
 			);
 			productRefGroup = 797849142791865F00EB8C4C /* Products */;
 			projectDirPath = "";
@@ -585,6 +615,7 @@
 			files = (
 				79BD0D9227D2894C00849B4B /* AverageGradeCollectionViewCell.xib in Resources */,
 				79BD0D8627D2859F00849B4B /* SessionTimeCollectionViewCell.xib in Resources */,
+				B0B9CA0728423929000C6A52 /* GoogleService-Info.plist in Resources */,
 				797849262791866000EB8C4C /* LaunchScreen.storyboard in Resources */,
 				79BD0D8E27D288B700849B4B /* CompletedTasksCollectionViewCell.xib in Resources */,
 				797849232791866000EB8C4C /* Assets.xcassets in Resources */,
@@ -595,6 +626,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D24B03D8010B1C086F8CEA0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Powertask/Pods-Powertask-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Powertask/Pods-Powertask-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Powertask/Pods-Powertask-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E77AC817F10F75ED05696DC0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Powertask-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7978490F2791865F00EB8C4C /* Sources */ = {
@@ -820,6 +893,7 @@
 		};
 		7978492B2791866000EB8C4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC4790FDE4C5C8C1D3D13780 /* Pods-Powertask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -848,6 +922,7 @@
 		};
 		7978492C2791866000EB8C4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37CD4748647C4A9A6C327195 /* Pods-Powertask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -898,7 +973,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor" */ = {
+		792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yannickl/DynamicColor.git";
 			requirement = {
@@ -906,7 +981,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors" */ = {
+		798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/thii/SwiftHEXColors.git";
 			requirement = {
@@ -914,7 +989,7 @@
 				kind = branch;
 			};
 		};
-		79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator" */ = {
+		79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanvorobei/SPIndicator.git";
 			requirement = {
@@ -922,7 +997,7 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+		B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
 			requirement = {
@@ -946,7 +1021,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -959,22 +1034,22 @@
 /* Begin XCSwiftPackageProductDependency section */
 		792EA9CE27DF4BEB009D9063 /* DynamicColor */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor" */;
+			package = 792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor.git" */;
 			productName = DynamicColor;
 		};
 		798B064327E12E94004F1254 /* SwiftHEXColors */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors" */;
+			package = 798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors.git" */;
 			productName = SwiftHEXColors;
 		};
 		79C6471D27D36F2E000CB0E9 /* SPIndicator */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator" */;
+			package = 79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator.git" */;
 			productName = SPIndicator;
 		};
 		B6A07F7127F0D37C00FADF90 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			package = B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar.git" */;
 			productName = FSCalendar;
 		};
 		B6A07F7427F0D3A700FADF90 /* GoogleSignIn */ = {
@@ -989,7 +1064,7 @@
 		};
 		B6A07F7A27F0D3DF00FADF90 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
