@@ -3,15 +3,18 @@
 //  Powertask
 //
 //  Created by Daniel Torres on 28/2/22.
+//  Updated by Javier de Castro on 28/05/2022
 //
 
 import UIKit
 import GoogleSignIn
+import FirebaseAnalytics
 
 class ConciergeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        analyticsOpenAppEvent()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,6 +35,17 @@ class ConciergeViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    
+    
+    /**
+     * Función de Analytics para crear evento de abrir app
+     * - Returns void
+     */
+    func analyticsOpenAppEvent(){
+        //Analytics Event
+        Analytics.logEvent("AppOpen", parameters: ["Name":PTUser.shared.name, "Email":PTUser.shared.email])
     }
 }
 

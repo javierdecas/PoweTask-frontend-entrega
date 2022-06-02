@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import FirebaseAnalytics
 
 class TasksListController: UITableViewController {
 
@@ -22,6 +23,7 @@ class TasksListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         syncTaskAndSubjects()
+        let date : Date? = Calendar.current.date(byAdding: .minute, value: 2, to: Date.now)
     }
     
             
@@ -155,6 +157,7 @@ extension TasksListController {
             self.userTasks = tasks
             PTUser.shared.tasks = tasks
             self.tasksTableView.reloadData()
+            self.analyticsTaskListEvent()
         } failure: { msg in
             print("ERROR-tasks")
         }
@@ -165,6 +168,19 @@ extension TasksListController {
         } failure: { error in
             print("ERROR-subjects")
         }
+        
+        
+    }
+    
+    
+    
+    /**
+     * Función de Analytics para crear evento de listar tareas
+     * - Returns void
+     */
+    func analyticsTaskListEvent(){
+        //Analytics Event
+        Analytics.logEvent("TaskList", parameters: ["id":PTUser.shared.id as Any, "name":PTUser.shared.name as Any])
     }
 }
 

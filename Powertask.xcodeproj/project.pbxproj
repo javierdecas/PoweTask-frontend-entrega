@@ -82,6 +82,8 @@
 		79E44B3327F10533007B1B44 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E44B2E27F10532007B1B44 /* SessionsViewController.swift */; };
 		79E44B3427F10533007B1B44 /* SessionsTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E44B2F27F10532007B1B44 /* SessionsTasks.swift */; };
 		79E44B3527F10533007B1B44 /* SessionsCountDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E44B3027F10532007B1B44 /* SessionsCountDown.swift */; };
+		B01534A0284394B400367616 /* DateNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B015349F284394B400367616 /* DateNotification.swift */; };
+		B01534A228452FC200367616 /* ItemTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01534A128452FC200367616 /* ItemTypeEnum.swift */; };
 		B0B9CA0728423929000C6A52 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0B9CA0628423929000C6A52 /* GoogleService-Info.plist */; };
 		B6A07F7227F0D37C00FADF90 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = B6A07F7127F0D37C00FADF90 /* FSCalendar */; };
 		B6A07F7527F0D3A700FADF90 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = B6A07F7427F0D3A700FADF90 /* GoogleSignIn */; };
@@ -178,6 +180,8 @@
 		79E44B2E27F10532007B1B44 /* SessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
 		79E44B2F27F10532007B1B44 /* SessionsTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsTasks.swift; sourceTree = "<group>"; };
 		79E44B3027F10532007B1B44 /* SessionsCountDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCountDown.swift; sourceTree = "<group>"; };
+		B015349F284394B400367616 /* DateNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateNotification.swift; sourceTree = "<group>"; };
+		B01534A128452FC200367616 /* ItemTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypeEnum.swift; sourceTree = "<group>"; };
 		B0B9CA0628423929000C6A52 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B6D963ED27AB0F2400F8259D /* CalendarSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSettingsController.swift; sourceTree = "<group>"; };
 		B6D963F127AB121100F8259D /* PeriodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodsController.swift; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				79DDD5DE27CD4DC500235AE0 /* ConciergeViewController.swift */,
+				B015349E2843946900367616 /* Notifications */,
 				7978492E2791868100EB8C4C /* ViewControllers */,
 				7978492D2791866C00EB8C4C /* Views */,
 				797849312791869E00EB8C4C /* PT Models */,
@@ -505,6 +510,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B015349E2843946900367616 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				B015349F284394B400367616 /* DateNotification.swift */,
+				B01534A128452FC200367616 /* ItemTypeEnum.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		B6D963FA27ABEBD400F8259D /* PeriodsCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,7 +545,6 @@
 				EC4790FDE4C5C8C1D3D13780 /* Pods-Powertask.debug.xcconfig */,
 				37CD4748647C4A9A6C327195 /* Pods-Powertask.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -591,13 +604,13 @@
 			);
 			mainGroup = 7978490A2791865F00EB8C4C;
 			packageReferences = (
-				79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator.git" */,
-				792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor.git" */,
-				798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors.git" */,
-				B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar.git" */,
+				79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator" */,
+				792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor" */,
+				798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors" */,
+				B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				B6A07F7327F0D3A700FADF90 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				B6A07F7627F0D3C000FADF90 /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */,
-				B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 797849142791865F00EB8C4C /* Products */;
 			projectDirPath = "";
@@ -693,11 +706,13 @@
 				79DDD5D527CD4C6900235AE0 /* GoogleSignInViewController.swift in Sources */,
 				797849172791865F00EB8C4C /* AppDelegate.swift in Sources */,
 				79E44B3227F10533007B1B44 /* SessionsConfiguration.swift in Sources */,
+				B01534A0284394B400367616 /* DateNotification.swift in Sources */,
 				79DDD5DF27CD4DC500235AE0 /* ConciergeViewController.swift in Sources */,
 				7953C32E27A8469100ADE027 /* SubjectSelectorViewController.swift in Sources */,
 				790BE65927BC00A8009D2706 /* PTDay.swift in Sources */,
 				79708FA72791F64900E42731 /* CalendarsViewController.swift in Sources */,
 				B6D963F827ABEB2700F8259D /* PeriodsTableViewCell.swift in Sources */,
+				B01534A228452FC200367616 /* ItemTypeEnum.swift in Sources */,
 				79DDD5CB27CCF85A00235AE0 /* PTRequestLogger.swift in Sources */,
 				79DDD5D727CD4C9400235AE0 /* FirstStepViewController.swift in Sources */,
 				790BE66427BC1EB4009D2706 /* TimeTableViewController.swift in Sources */,
@@ -973,7 +988,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor.git" */ = {
+		792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yannickl/DynamicColor.git";
 			requirement = {
@@ -981,7 +996,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors.git" */ = {
+		798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/thii/SwiftHEXColors.git";
 			requirement = {
@@ -989,7 +1004,7 @@
 				kind = branch;
 			};
 		};
-		79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator.git" */ = {
+		79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanvorobei/SPIndicator.git";
 			requirement = {
@@ -997,7 +1012,7 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar.git" */ = {
+		B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
 			requirement = {
@@ -1021,7 +1036,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1034,22 +1049,22 @@
 /* Begin XCSwiftPackageProductDependency section */
 		792EA9CE27DF4BEB009D9063 /* DynamicColor */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor.git" */;
+			package = 792EA9CD27DF4BEB009D9063 /* XCRemoteSwiftPackageReference "DynamicColor" */;
 			productName = DynamicColor;
 		};
 		798B064327E12E94004F1254 /* SwiftHEXColors */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors.git" */;
+			package = 798B064227E12E94004F1254 /* XCRemoteSwiftPackageReference "SwiftHEXColors" */;
 			productName = SwiftHEXColors;
 		};
 		79C6471D27D36F2E000CB0E9 /* SPIndicator */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator.git" */;
+			package = 79C6471C27D36F2E000CB0E9 /* XCRemoteSwiftPackageReference "SPIndicator" */;
 			productName = SPIndicator;
 		};
 		B6A07F7127F0D37C00FADF90 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar.git" */;
+			package = B6A07F7027F0D37C00FADF90 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
 		};
 		B6A07F7427F0D3A700FADF90 /* GoogleSignIn */ = {
@@ -1064,7 +1079,7 @@
 		};
 		B6A07F7A27F0D3DF00FADF90 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = B6A07F7927F0D3DF00FADF90 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

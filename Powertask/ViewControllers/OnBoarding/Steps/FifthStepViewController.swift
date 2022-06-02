@@ -3,9 +3,11 @@
 //  Powertask
 //
 //  Created by Daniel Torres on 28/2/22.
+//  Updated by Javier de Castro on 29/05/2022
 //
 
 import UIKit
+import UserNotifications
 
 class FifthStepViewController: UIViewController {
     override func viewDidLoad() {
@@ -19,6 +21,7 @@ class FifthStepViewController: UIViewController {
         
         view.addGestureRecognizer(leftSwipe)
         view.addGestureRecognizer(rightSwipe)
+        
     }
     
     @objc func handleSwipes(_ sender: UISwipeGestureRecognizer)
@@ -26,6 +29,8 @@ class FifthStepViewController: UIViewController {
         if sender.direction == .left
         {
             if let pageController = parent as? OnBoardingViewController {
+                
+                setupNotificationConstraints()
                 pageController.goNext()
             }
         }
@@ -37,4 +42,13 @@ class FifthStepViewController: UIViewController {
             }
         }
     }
+    
+    private func setupNotificationConstraints(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
+            {(accepted, error) in
+                if !accepted {
+                    print("permiso denegado por el usuario")
+                }
+            }
+        }
 }

@@ -45,23 +45,32 @@ class AddTaskViewController: UIViewController {
     @IBOutlet weak var subtaskTable: UITableView!
     @IBOutlet weak var addButton: UIButton!
     
+    @IBOutlet weak var alarmLabel: UILabel!
+    @IBOutlet weak var alarmDatePicker: UIDatePicker!
+    
     @IBOutlet weak var handoverDateLabelToSubjectLabel: NSLayoutConstraint!
     @IBOutlet weak var handoverDatePickerToSubjectButton: NSLayoutConstraint!
     
     @IBOutlet weak var startdatePickerToSubjectButton: NSLayoutConstraint!
     @IBOutlet weak var startdateLabelToSubjectLabel: NSLayoutConstraint!
-    
-    @IBOutlet weak var descriptionLabelToNote: NSLayoutConstraint!
-    @IBOutlet weak var descriptionLabelToStartdateLabel: NSLayoutConstraint!
     @IBOutlet weak var markTextfieldToStartDatePicker: NSLayoutConstraint!
+    //@IBOutlet weak var descriptionLabelToNote: NSLayoutConstraint!
+    //@IBOutlet weak var descriptionLabelToStartdateLabel: NSLayoutConstraint!
+    
+    @IBOutlet weak var alarmLabelToStartDatePicker: NSLayoutConstraint!
+    @IBOutlet weak var alarmLabelToMarkLabel: NSLayoutConstraint!
+    @IBOutlet weak var alarmDateToStartDatePicker: NSLayoutConstraint!
+    @IBOutlet weak var alarmDateToMarkText: NSLayoutConstraint!
+
+    //@IBOutlet weak var markTextField: UITextField!
        
     override func viewDidLoad() {
         super.viewDidLoad()
         // MARK: - Interface config
         taskNameTextField.borderStyle = .none
-        markTextField.borderStyle = .none
-        handoverDatePicker.minimumDate = Date()
-        startDatePicker.minimumDate = Date()
+        markTextField.borderStyle = .line
+        markTextField.layer.cornerRadius = 5
+        //alarmDatePicker.setDate(Date., animated: <#T##Bool#>)
         subtaskTable.delegate = self
         subtaskTable.dataSource = self
         
@@ -69,16 +78,18 @@ class AddTaskViewController: UIViewController {
         if let task = userTask {
             
             if task.google_id == nil {
-                handoverDatePicker.isHidden = true
-                handoverDateLabel.isHidden = true
-                handoverDateLabelToSubjectLabel.isActive = false
-                handoverDatePickerToSubjectButton.isActive = false
-                startdateLabelToSubjectLabel.isActive = true
-                startdatePickerToSubjectButton.isActive = true
+                //handoverDatePicker.isHidden = true
+                //handoverDateLabel.isHidden = true
+                //handoverDateLabelToSubjectLabel.isActive = false
+                //handoverDatePickerToSubjectButton.isActive = false
+                //startdateLabelToSubjectLabel.isActive = true
+                //startdatePickerToSubjectButton.isActive = true
                 markLabel.isHidden = true
                 markTextField.isHidden = true
-                descriptionLabelToNote.isActive = false
-                descriptionLabelToStartdateLabel.isActive = true
+                alarmLabelToMarkLabel.isActive = false
+                alarmDateToMarkText.isActive = false
+                alarmLabelToStartDatePicker.isActive = true
+                alarmDateToStartDatePicker.isActive = true
                 markTextfieldToStartDatePicker.isActive = false
                 descriptionTextView.isEditable = true
             }else{
@@ -87,6 +98,17 @@ class AddTaskViewController: UIViewController {
                 markTextField.isEnabled = false
                 descriptionTextView.isEditable = false
                 taskNameTextField.isEnabled = false
+                alarmLabelToStartDatePicker.isActive = false
+                alarmDateToStartDatePicker.isActive = false
+                
+                /*
+                handoverDateLabelToSubjectLabel.isActive = true
+                handoverDatePickerToSubjectButton.isActive = true
+                startdateLabelToSubjectLabel.isActive = true
+                startdatePickerToSubjectButton.isActive = true
+                startdateLabelToSubjectLabel.isActive = true
+                startdatePickerToSubjectButton.isActive = true
+                 */
             }
             
             taskNameTextField.text = task.name
@@ -101,14 +123,9 @@ class AddTaskViewController: UIViewController {
                 subjectButton.setTitle(subject.name, for: .normal)
 //                subjectButton.tintColor = UIColor(hex: subject.color)
             }
-            if let dueDate = task.date_start {
-                startDatePicker.setDate(Date(timeIntervalSince1970: TimeInterval(dueDate)), animated: false)
-//                startDatePicker.setDate(dueDate, animated: false)
-            }
-            if let handoverDate = task.date_handover {
-                handoverDatePicker.setDate(Date(timeIntervalSince1970: TimeInterval(handoverDate)), animated: false)
-//                startDatePicker.setDate(handoverDate, animated: false)
-            }
+            startDatePicker.setDate(Date(timeIntervalSince1970: TimeInterval(task.date_start ?? Int(Date().timeIntervalSince1970))), animated: false)
+            handoverDatePicker.setDate(Date(timeIntervalSince1970: TimeInterval(task.date_handover ?? Int(Date().timeIntervalSince1970))), animated: false)
+            
             if Bool(truncating: task.completed as NSNumber){
                 doneButton.setImage(Constants.taskDoneImage, for: .normal)
                 doneButton.tintColor = Constants.appColor
@@ -121,18 +138,25 @@ class AddTaskViewController: UIViewController {
                 markTextField.text = String(mark)
             }
         } else {
+            handoverDatePicker.minimumDate = Date()
+            startDatePicker.minimumDate = Date()
+            
             userIsEdditing = true
-            handoverDatePicker.isHidden = true
-            handoverDateLabel.isHidden = true
-            handoverDateLabelToSubjectLabel.isActive = false
-            handoverDatePickerToSubjectButton.isActive = false
-            startdateLabelToSubjectLabel.isActive = true
-            startdatePickerToSubjectButton.isActive = true
+            //handoverDatePicker.isHidden = true
+            //handoverDateLabel.isHidden = true
+            handoverDateLabelToSubjectLabel.isActive = true
+            handoverDatePickerToSubjectButton.isActive = true
+            startdateLabelToSubjectLabel.isActive = false
+            startdatePickerToSubjectButton.isActive = false
             markLabel.isHidden = true
             markTextField.isHidden = true
-            descriptionLabelToNote.isActive = false
-            descriptionLabelToStartdateLabel.isActive = true
+            alarmLabelToMarkLabel.isActive = false
+            alarmDateToMarkText.isActive = false
             markTextfieldToStartDatePicker.isActive = false
+            
+            alarmLabelToStartDatePicker.isActive = true
+            alarmDateToStartDatePicker.isActive = true
+            
         }
         
         if userIsEdditing {
@@ -184,6 +208,7 @@ class AddTaskViewController: UIViewController {
                         print("error creating task")
                     })
                 }
+                analyticsIncludeTaskEvent(userTask!)
             }else{
                 if let task = userTask{
                     NetworkingProvider.shared.editTask(task: task) { msg in
@@ -192,6 +217,7 @@ class AddTaskViewController: UIViewController {
                         print("error saving task")
                     }
                 }
+                analyticsEditTaskEvent(userTask!)
             }
         } else {
             configInterfaceWhileEdditiing(isEdditing: true)
@@ -218,6 +244,7 @@ class AddTaskViewController: UIViewController {
     // MARK: - Supporting Functions
     func configInterfaceWhileEdditiing(isEdditing: Bool){
         startDatePicker.isEnabled = isEdditing
+        alarmDatePicker.isEnabled = isEdditing
         addButton.isHidden = !isEdditing
         if let task = userTask{
             if task.google_id == nil{
@@ -254,28 +281,26 @@ class AddTaskViewController: UIViewController {
             userTask!.description = descriptionTextView.text
             // TODO: Controlar nota FLOAT?
             userTask!.mark = Float(markTextField.text ?? "00")
-            print(handoverDatePicker.date)
-//            userTask!.handoverDate = handoverDatePicker.date
-            Int(handoverDatePicker.date.timeIntervalSince1970)
-            if !startDatePicker.isHidden {
-//                userTask!.startDate = startDatePicker.date
-                Int(startDatePicker.date.timeIntervalSince1970)
-            }
+            userTask!.date_start = Int(handoverDatePicker.date.timeIntervalSince1970)
+            userTask!.date_handover = Int(startDatePicker.date.timeIntervalSince1970)
             // TODO: falta perform date
         } else {
             let name = taskNameTextField.text
             let description = descriptionTextView.text
             let startDate :Int? = Int(handoverDatePicker.date.timeIntervalSince1970)
-            var handoverDate :Int? = Int(startDatePicker.date.timeIntervalSince1970)
-            /*if !startDatePicker.isHidden {
-                startDate = Int(startDatePicker.date.timeIntervalSince1970)
-            }*/
-            var subject :PTSubject? = subject
+            let handoverDate :Int? = Int(startDatePicker.date.timeIntervalSince1970)
+            let subject :PTSubject? = subject
             
             userTask = PTTask(name: name!, date_start: startDate, date_handover: handoverDate, description: description!, completed: 0, subject: subject, subtasks: [])
-            analyticsIncludeTaskEvent(userTask!)
             delegate?.appendNewTask(newTask: userTask!)
         }
+        
+        //Schedule Notification
+        if(Int(handoverDatePicker.date.timeIntervalSince1970) != Int(alarmDatePicker.date.timeIntervalSince1970)){
+            DateNotification.shared.scheduleSingleNotification(dateToAlert: Int(alarmDatePicker.date.timeIntervalSince1970),dateOfEvent: Int(startDatePicker.date.timeIntervalSince1970), name: userTask!.name, description: userTask!.description, type: ItemType.task, id: 1)
+        }
+        
+        userTask = nil
     }
     
     @IBAction func selectSubject(_ sender: Any) {
@@ -370,7 +395,22 @@ extension AddTaskViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
+    /**
+     * Función de Analytics para registrar información de crear una nueva tarea
+     * - Parameter Tarea a crear del tipo PTTask
+     * - Returns void
+     */
     func analyticsIncludeTaskEvent(_ newTask : PTTask){
+        //Analytics Event
+        Analytics.logEvent("TaskCreation", parameters: ["Name":newTask.name, "Subject":(newTask.subject?.name) ?? "No subject", "Description":newTask.description ?? "", "StartDate":newTask.date_start ?? 0, "HandoverDate": String(newTask.date_handover ?? 0)])
+    }
+    
+    /**
+     * Función de Analytics para editar información de una tarea
+     * - Parameter Tarea a editar del tipo PTTask
+     * - Returns void
+     */
+    func analyticsEditTaskEvent(_ newTask : PTTask){
         //Analytics Event
         Analytics.logEvent("TaskCreation", parameters: ["Name":newTask.name, "Subject":(newTask.subject?.name) ?? "No subject", "Description":newTask.description ?? "", "StartDate":newTask.date_start ?? 0, "HandoverDate": String(newTask.date_handover ?? 0)])
     }

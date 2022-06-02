@@ -3,10 +3,12 @@
 //  Powertask
 //
 //  Created by Daniel Torres on 4/2/22.
+//  Updated by Javier de Castro on 28/05/2022
 //
 
 import UIKit
 import CoreData
+import FirebaseAnalytics
 
 protocol NewEventProtocol: AnyObject {
     func SaveNewEvent(event: PTEvent, isNewEvent: Bool)
@@ -26,15 +28,20 @@ class NewEventViewController: UIViewController {
     var eventType: EventType?
     var eventStartDate: Date?
     var eventEndDate: Date?
+    var eventAlarmDate: Date?
     var eventSubject: PTSubject?
     var eventNotes: String?
     var indexPath: IndexPath?
+    
+    // Gestión de Alarmas
+    var dateEventItemStarted: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         eventDetailsTable.delegate = self
         eventDetailsTable.dataSource = self
         background.layer.cornerRadius = 30
+        
         
         if let event = event {
             eventId = event.id
@@ -71,10 +78,25 @@ class NewEventViewController: UIViewController {
     }
     // Le pasa al delegado el nuevo evento
     @IBAction func saveEvent(_ sender: Any) {
-        if let eventName = eventName, let eventType = eventType, let startDate = eventStartDate, let endDate = eventEndDate {
+        if let eventName = eventName, let eventType = eventType, let startDate = eventStartDate, let endDate = eventEndDate ?? eventStartDate {
             delegate?.SaveNewEvent(event: PTEvent(id: eventId, name: eventName, type: eventType, allDay: 0, notes: eventNotes, startDate: startDate, endDate: endDate, subject: eventSubject), isNewEvent: isNewEvent!)
             //Esconder vista cuando se completa el formulario
             self.dismiss(animated: true, completion: nil)
+            // Activación de alarma
+            if eventAlarmDate != nil {
+                var tipoEvento : ItemType
+                switch eventType {
+                case .vacation:
+                    tipoEvento = ItemType.holliday
+                case .exam:
+                    tipoEvento = ItemType.exam
+                case .personal:
+                    tipoEvento = ItemType.personal
+                }
+                DateNotification.shared.scheduleSingleNotification(dateToAlert: Int(eventAlarmDate!.timeIntervalSince1970), dateOfEvent: Int(eventStartDate!.timeIntervalSince1970), name: eventName, description: nil, type: tipoEvento, id: eventId ?? 1)
+            }
+            // Evento de Analytics
+            analyticsNewEventEvent()
         }
     }
     
@@ -106,9 +128,9 @@ extension NewEventViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             if eventType == EventType.exam {
-                return 2
-            } else {
                 return 3
+            } else {
+                return 4
             }
         } else {
             return 1
@@ -116,10 +138,14 @@ extension NewEventViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Para ver si se activa la alarma o no
+        dateEventItemStarted = Int(Date.now.timeIntervalSince1970)
+        
         switch indexPath.section {
+        // Primera Mini-Tabla:
         case 0:
             switch indexPath.row {
-            case 0:
+            case 0: // Añade Título
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldTableViewCell", for: indexPath) as? TextFieldTableViewCell {
                     if let name = eventName {
                         cell.textField.text = name
@@ -127,7 +153,7 @@ extension NewEventViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.delegate = self
                     return cell
                 }
-            case 1:
+            case 1: // Añade Start Date
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "datePickerTableViewCell", for: indexPath) as? DatePickerTableViewCell {
                     cell.datePicker.minimumDate = Date.now
                     if let startDate = eventStartDate {
@@ -138,7 +164,18 @@ extension NewEventViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.delegate = self
                     return cell
                 }
-            case 2:
+            case 2: //Añade Alarm Date
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "datePickerTableViewCell", for: indexPath) as? DatePickerTableViewCell {
+                    cell.datePicker.minimumDate = Date.now
+                    if let alarmDate = eventAlarmDate {
+                        cell.datePicker.date = alarmDate
+                    }
+                    cell.datePicker.datePickerMode = eventType == EventType.vacation ? .date : .dateAndTime
+                    cell.label.text = "Alarma"
+                    cell.delegate = self
+                    return cell
+                }
+            case 3: //Añade End Date
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "datePickerTableViewCell", for: indexPath) as? DatePickerTableViewCell {
                     cell.datePicker.minimumDate = Date.now
                     if let endDate = eventEndDate {
@@ -152,14 +189,15 @@ extension NewEventViewController: UITableViewDelegate, UITableViewDataSource {
             default:
                 return UITableViewCell()
             }
-        case 1:
-            if eventType == EventType.personal {
+            
+        case 1: // Segunda Mini-Tabla
+            if eventType == EventType.personal { // Si es Personal añade Notas
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "textViewTableViewCell", for: indexPath) as? TextViewTableViewCell {
                     cell.delegate = self
                     cell.textField.text = eventNotes
                     return cell
                 }
-            } else {
+            } else { // Si no es personal añade Asignatura
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "buttonTableViewCell", for: indexPath) as? ButtonTableViewCell {
                     cell.label.text = eventType == EventType.exam ? "Asignatura" : "Calendario"
                     if let subject = eventSubject {
@@ -171,7 +209,7 @@ extension NewEventViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             
-        case 2:
+        case 2: // Tercera Mini-Tabla
             if let cell = tableView.dequeueReusableCell(withIdentifier: "textViewTableViewCell", for: indexPath) as? TextViewTableViewCell{
                 cell.delegate = self
                 cell.textField.text = eventNotes
@@ -208,15 +246,27 @@ extension NewEventViewController: CellTextFieldProtocol, CellButtonPushedDelegat
     
     func didSelectDate(_ cell: DatePickerTableViewCell, dateSelected: Date) {
         // TODO: Evitar este truco con las fechas y mostrar en rojo cuando se seleccione erroneamente
-        if eventStartDate == nil {
+        let labeltext = cell.label.text
+        
+        switch labeltext {
+        case "Fecha":
             eventStartDate = dateSelected
-        } else {
-            if eventStartDate! > dateSelected {
-                eventEndDate = eventStartDate
-                eventStartDate = dateSelected
-            } else {
-                eventEndDate = dateSelected
+        case "Alarma":
+            eventAlarmDate = dateSelected
+        case "Empieza":
+            eventStartDate = dateSelected
+        case "Termina":
+            if eventStartDate != nil{
+                if eventStartDate! > dateSelected {
+                    eventEndDate = eventStartDate
+                    eventStartDate = dateSelected
+                }
             }
+            eventEndDate = dateSelected
+        case .none:
+            print("Error on select")
+        case .some(_):
+            print("Not expected")
         }
     }
     
@@ -233,5 +283,14 @@ extension NewEventViewController: CellTextFieldProtocol, CellButtonPushedDelegat
      */
     @objc func handleTap(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
+    }
+    
+    /**
+     * Función de Analytics para registrar información de crear un nuevo evento
+     * - Returns void
+     */
+    func analyticsNewEventEvent(){
+        //Analytics Event
+        Analytics.logEvent("NewEvent", parameters: ["Name":String(eventName ?? "Evento"), "Type":eventType, "StudentId": PTUser.shared.id, "StartDate": eventStartDate!, "EndDate":eventEndDate])
     }
 }
