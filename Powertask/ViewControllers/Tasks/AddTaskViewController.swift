@@ -208,7 +208,9 @@ class AddTaskViewController: UIViewController {
                         print("error creating task")
                     })
                 }
-                analyticsIncludeTaskEvent(userTask!)
+                if userTask != nil {
+                    analyticsIncludeTaskEvent(userTask!)
+                }
             }else{
                 if let task = userTask{
                     NetworkingProvider.shared.editTask(task: task) { msg in

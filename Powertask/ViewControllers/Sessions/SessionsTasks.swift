@@ -3,6 +3,7 @@
 //  Powertask
 //
 //  Created by Andrea Martinez Bartolome on 24/3/22.
+//  Updated by Javier de Castro on 02/05/2022
 //
 
 import UIKit
@@ -12,11 +13,14 @@ protocol transferTasksProtocol: AnyObject{
     func transferTasks(_ view: SesionsTasks, taskTitle: String)
 }
 
-class SesionsTasks: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class SesionsTasks: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var delegate: transferTasksProtocol?
     var userTasks: [PTTask]?
+    var selectedTask: PTTask?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,19 +54,33 @@ class SesionsTasks: UIViewController, UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.transferTasks(self, taskTitle: "ok")
+        delegate?.transferTasks(self, taskTitle: userTasks?[indexPath.row].name ?? "ok")
+        UserDefaults.standard.set(true, forKey: "taskSelected")
+        UserDefaults.standard.set(userTasks?[indexPath.row].name, forKey: "taskSelectedInfo")
         self.navigationController?.popViewController(animated: true)
+        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tasksSessionsCell", for: indexPath) as! SessionsTasksTableViewCell
         
         if let task = userTasks?[indexPath.row]{
+            cell.taskPT = task
             cell.titleTask.text = task.name
             return cell
         }
         
         return cell
         
+    }
+}
+
+extension SesionsTasks: CellButtonTaskDelegate {
+    
+    func taskSelected(_ task: PTTask) {
+        selectedTask = task
+        if selectedTask != nil {
+            UserDefaults.standard.set(true, forKey: "taskSelected")
+        }
     }
 }

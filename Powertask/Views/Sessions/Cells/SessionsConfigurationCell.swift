@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SessionStepperProtocol: AnyObject{
-    func stepperTimeChanged(_ cell: SessionsConfigurationTableViewCell, sessionTime: Double?)
+    func stepperTimeChanged(_ cell: SessionsConfigurationTableViewCell, sessionTimeNew: Int?)
 }
 class SessionsConfigurationTableViewCell: UITableViewCell {
     
@@ -16,6 +16,7 @@ class SessionsConfigurationTableViewCell: UITableViewCell {
     @IBOutlet weak var selectAmount: UIStepper!
     @IBOutlet weak var showAmount: UILabel!
     var delegate: SessionStepperProtocol?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
        // TODO: Tareas con más de una linea
@@ -23,6 +24,6 @@ class SessionsConfigurationTableViewCell: UITableViewCell {
     }
     
     @objc func didTimeChanged(_ sender: UIStepper){
-        delegate?.stepperTimeChanged(self, sessionTime: sender.value)
+        delegate?.stepperTimeChanged(self, sessionTimeNew: Int(sender.value))
     }
 }

@@ -1888,31 +1888,31 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="timeBlockCell" id="ZbT-4b-6cG" customClass="TimeTableTableViewCell" customModule="Powertask" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="86" width="414" height="64"/>
+                                        <rect key="frame" x="0.0" y="86" width="414" height="64.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZbT-4b-6cG" id="5YL-Tx-wyj">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="rgR-BE-CbR">
-                                                    <rect key="frame" x="20" y="23" width="70" height="31"/>
+                                                    <rect key="frame" x="20" y="23.5" width="70" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="QXh-ru-RO3"/>
                                                     </constraints>
                                                     <locale key="locale" localeIdentifier="es"/>
                                                 </datePicker>
                                                 <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="qq8-ze-GkC">
-                                                    <rect key="frame" x="125" y="22.5" width="70" height="31.5"/>
+                                                    <rect key="frame" x="125" y="22.5" width="70" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="mKN-wv-shD"/>
                                                     </constraints>
                                                     <locale key="locale" localeIdentifier="es"/>
                                                 </datePicker>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyF-SW-vXS">
-                                                    <rect key="frame" x="215" y="22.5" width="179" height="31.5"/>
+                                                    <rect key="frame" x="215" y="22.5" width="179" height="32"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bhc-dC-l8s">
-                                                            <rect key="frame" x="69" y="5.5" width="41.5" height="20.5"/>
+                                                            <rect key="frame" x="69" y="6" width="41.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1925,12 +1925,12 @@
                                                     </constraints>
                                                 </view>
                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.forward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="phg-D7-zgx">
-                                                    <rect key="frame" x="98" y="25.5" width="20" height="25"/>
+                                                    <rect key="frame" x="98" y="26" width="20" height="25"/>
                                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                                 </imageView>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desde" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q78-6q-SPX">
-                                                    <rect key="frame" x="38.5" y="6" width="33.5" height="14"/>
+                                                    <rect key="frame" x="38.5" y="6" width="33.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2090,6 +2090,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system"/>
+                                <connections>
+                                    <action selector="configurationButton:" destination="J2V-ys-har" eventType="touchUpInside" id="Yh2-FQ-idi"/>
+                                </connections>
                             </button>
                             <connections>
                                 <action selector="showConfiguration:" destination="J2V-ys-har" id="JHh-QQ-d70"/>
@@ -2097,6 +2100,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="configButton" destination="wRP-Yj-kda" id="W7o-gD-Rgt"/>
                         <outlet property="countdownActive" destination="hk9-FQ-7GL" id="6Xf-Mt-Vyk"/>
                         <outlet property="countdownDesactive" destination="2f2-CP-MpK" id="V4E-0i-R5y"/>
                         <outlet property="selectTask" destination="qEK-J2-RyZ" id="aDc-1x-fc1"/>
@@ -2170,6 +2174,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Configuración" id="LtJ-ln-AeF"/>
                     <connections>
+                        <outlet property="backButton" destination="LtJ-ln-AeF" id="xeX-Wr-CNy"/>
                         <outlet property="tableView" destination="Hq2-za-W4Y" id="umq-3N-sWV"/>
                     </connections>
                 </viewController>
@@ -2214,7 +2219,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="titleTask" destination="N5v-E9-9H1" id="S8N-DG-9bG"/>
+                                            <outlet property="titleTask" destination="N5v-E9-9H1" id="f9x-zh-Vro"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
