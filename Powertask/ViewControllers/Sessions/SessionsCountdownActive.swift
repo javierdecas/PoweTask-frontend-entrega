@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 class SessionsCountDownActive: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presentSwiftUIView()

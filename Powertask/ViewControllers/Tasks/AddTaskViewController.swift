@@ -179,16 +179,17 @@ class AddTaskViewController: UIViewController {
             doneButton.setImage(Constants.taskUndoneImage, for: .normal)
             doneButton.tintColor = .black
             userTask!.completed = 0
-            NetworkingProvider.shared.toggleTask(task: task) { taskCompleted in
-                print("toggle ok")
-            } failure: { msg in
-                print("error toggle")
-            }
 
         } else {
             doneButton.setImage(Constants.taskDoneImage, for: .normal)
             doneButton.tintColor = Constants.appColor
             userTask!.completed = 1
+        }
+        // Toggle always
+        NetworkingProvider.shared.toggleTask(task: task) { taskCompleted in
+            print("toggle ok")
+        } failure: { msg in
+            print("error toggle")
         }
 
     }

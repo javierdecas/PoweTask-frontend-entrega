@@ -56,7 +56,12 @@ class SesionsTasks: UIViewController, UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.transferTasks(self, taskTitle: userTasks?[indexPath.row].name ?? "ok")
         UserDefaults.standard.set(true, forKey: "taskSelected")
+        UserDefaults.standard.set(true, forKey: "taskRunning")
         UserDefaults.standard.set(userTasks?[indexPath.row].name, forKey: "taskSelectedInfo")
+        stepsLeft = CGFloat(UserDefaults.standard.value(forKey: "sessionNumber") as! Int)
+        numSessions = CGFloat(UserDefaults.standard.value(forKey: "sessionNumber") as! Int)
+        actualStatus = .study
+        isRunning = true
         self.navigationController?.popViewController(animated: true)
         
     }
@@ -81,6 +86,7 @@ extension SesionsTasks: CellButtonTaskDelegate {
         selectedTask = task
         if selectedTask != nil {
             UserDefaults.standard.set(true, forKey: "taskSelected")
+            UserDefaults.standard.set(true, forKey: "taskRunning")
         }
     }
 }

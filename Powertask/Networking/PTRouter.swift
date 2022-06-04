@@ -58,11 +58,11 @@ enum PTRouter {
     case .editTask:
         return "/task/edit"
     case .deleteTask(let task):
-        return "/task/delete/\(task.id)"
+        return "/task/delete/\(String(task.id ?? 0))"
     case .toogleTask(let task):
-        return "/task/toggle/\(task.id)"
+        return "/task/toggle/\(String(task.id ?? 0))"
     case .toogleSubtask(let subtask):
-        return "/subtask/toggle/\(subtask.id)"
+        return "/subtask/toggle/\(String(subtask.id ?? 0))"
    
     case .listEvents:
         return "/event/list"

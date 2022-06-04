@@ -3,7 +3,7 @@
 //  Powertask
 //
 //  Created by Daniel Torres on 14/1/22.
-//
+//  Updated by Javier de Castro on 03/06/2022
 
 import UIKit
 import SwiftUI
@@ -12,6 +12,7 @@ class SessionsViewController: UIViewController, transferTasksProtocol{
     func transferTasks(_ view: SesionsTasks, taskTitle: String) {
         selectTask.titleLabel?.text = taskTitle
         UserDefaults.standard.set(true, forKey: "taskSelected")
+        UserDefaults.standard.set(true, forKey: "taskRunning")
     }
     
 
@@ -20,7 +21,7 @@ class SessionsViewController: UIViewController, transferTasksProtocol{
     @IBOutlet weak var countdownDesactive: UIView!
     @IBOutlet weak var countdownActive: UIView!
     @IBOutlet weak var taskLabel: UILabel!
-    @IBOutlet weak var taskControllerButton: UIButton!
+    @IBOutlet weak public var pauseButton: UIButton!
     
     var sessionTime : Int = 0
     var sessionNumber: Int = 0
@@ -28,6 +29,7 @@ class SessionsViewController: UIViewController, transferTasksProtocol{
     var sessionLongBreak: Int = 0
     
     var taskSelected: Bool?
+    var taskRunning: Bool?
     public var timeSession: CGFloat?
     override func viewDidLoad() {
         timerActivity()
@@ -74,6 +76,7 @@ class SessionsViewController: UIViewController, transferTasksProtocol{
     func timerActivity(){
         
         taskSelected = UserDefaults.standard.value(forKey: "taskSelected") as? Bool
+        taskRunning = UserDefaults.standard.value(forKey: "taskRunning") as? Bool
         if(UserDefaults.standard.value(forKey: "sessionTime") == nil){
             let ses = SessionsConfiguration()
             ses.initializeDefaultConfig()
@@ -83,20 +86,40 @@ class SessionsViewController: UIViewController, transferTasksProtocol{
         sessionShortBreak = UserDefaults.standard.value(forKey: "sessionShortBreak") as! Int
         sessionLongBreak = UserDefaults.standard.value(forKey: "sessionLongBreak") as! Int
 
-        if taskSelected == true{
-            //let test  = CGFloat(sessionTime * 60)
-            //timeRemainingActive = test
-            countdownActive.isHidden = false
-            countdownDesactive.isHidden = true
+        if taskSelected == true {
+            
+            if taskRunning == true{
+                let task = UserDefaults.standard.value(forKey: "taskSelectedInfo") as! String
+                taskLabel.text = "Tarea Actual: " + task
+                pauseButton.isHidden = false
+                countdownActive.isHidden = false
+                countdownDesactive.isHidden = true
+            }else{
+                taskLabel.text = "Tarea Actual: "
+                pauseButton.isHidden = true
+                countdownActive.isHidden = false
+                countdownDesactive.isHidden = true
+            }
             
         }else{
             countdownActive.isHidden = true
             countdownDesactive.isHidden = false
-            //taskLabel.isHidden = true
-            //taskControllerButton.isHidden = true
+            taskLabel.text = "Tarea Actual: "
+            pauseButton.isHidden = true
         }
     }
-    @IBAction func playPauseButton(_ sender: Any) {
-        
+
+    @IBAction func playPause(_ sender: Any) {
+        if isRunning{
+            isRunning = false
+            pauseButton.setTitle("Play", for: .normal)
+        }else{
+            isRunning = true
+            pauseButton.setTitle("Pause", for: .normal)
+        }
+    }
+    
+    public func setButtonTitle(title: String){
+        pauseButton.setTitle(title, for: .normal)
     }
 }

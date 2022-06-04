@@ -59,6 +59,12 @@ extension TasksListController: SaveNewTaskProtocol, TaskCellDoneDelegate {
         let indexPath = tasksTableView.indexPath(for: taskCell)
         if let row = indexPath?.row, let _ = userTasks,  let done = taskDone {
             userTasks![row].completed = done ? 1 : 0
+            // Call toggle
+            NetworkingProvider.shared.toggleTask(task: userTasks![row]) { taskCompleted in
+                print("toggle ok")
+            } failure: { msg in
+                print("error toggle")
+            }
         }
     }
     
