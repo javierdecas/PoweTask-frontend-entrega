@@ -130,7 +130,7 @@ enum PTRouter {
  
     case .createTask(let task), .editTask(let task):
         if let subjectId = task.subject?.id {
-            return ["id" : String(task.id!),
+            return [//"id" : String(task.id),
                     "name" : task.name,
                     "date_start" : String(task.date_start!),
                     "date_handover" : String(task.date_handover!),

@@ -52,6 +52,10 @@ class CalendarsViewController: UIViewController {
         addEventPullDownButton.menu = menu
         addEventPullDownButton.showsMenuAsPrimaryAction = true
     }
+    override func viewDidAppear(_ animated: Bool) {
+        retrieveEvents()
+        super.viewDidAppear(true)
+    }
     
     /// Instancia el controlador para crear un nuevo evento configurado según los parámetros pasados..
     ///
@@ -215,6 +219,8 @@ extension CalendarsViewController: FSCalendarDelegate, FSCalendarDataSource, FSC
          for exam in examnEvents {
             if let color = exam.subject?.color {
                 colors.append(UIColor(color))
+            }else{
+                colors.append(UIColor.magenta)
             }
         }
         for _ in personalEvents {
@@ -323,8 +329,5 @@ extension CalendarsViewController: NewEventProtocol {
             }
         }
     }
-    override func viewDidAppear(_ animated: Bool) {
-        retrieveEvents()
-        super.viewDidAppear(true)
-    }
+    
 }
