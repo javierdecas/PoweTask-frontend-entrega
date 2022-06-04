@@ -323,4 +323,8 @@ extension CalendarsViewController: NewEventProtocol {
             }
         }
     }
+    override func viewDidAppear(_ animated: Bool) {
+        retrieveEvents()
+        super.viewDidAppear(true)
+    }
 }

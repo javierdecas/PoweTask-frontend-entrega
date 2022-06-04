@@ -553,8 +553,8 @@
                                     <constraint firstAttribute="height" constant="32" id="8GO-kK-RHB"/>
                                 </constraints>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Realización" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8i-2P-7F8">
-                                <rect key="frame" x="20" y="193" width="105" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entrega" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8i-2P-7F8">
+                                <rect key="frame" x="20" y="193" width="71.5" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="LsM-95-8EO"/>
                                 </constraints>
@@ -562,8 +562,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entrega" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFQ-eb-vYi">
-                                <rect key="frame" x="20" y="148" width="72" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inicio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFQ-eb-vYi">
+                                <rect key="frame" x="20" y="148" width="49" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="oqV-pv-iVZ"/>
                                 </constraints>
@@ -2092,7 +2092,7 @@
                         <viewLayoutGuide key="safeArea" id="nQ9-UZ-jDr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="qEK-J2-RyZ" firstAttribute="centerY" secondItem="XA9-h4-VU0" secondAttribute="centerY" constant="130" id="2bj-OX-GWx"/>
+                            <constraint firstItem="qEK-J2-RyZ" firstAttribute="centerY" secondItem="XA9-h4-VU0" secondAttribute="centerY" constant="150" id="2bj-OX-GWx"/>
                             <constraint firstItem="Urf-tb-ezb" firstAttribute="centerX" secondItem="XA9-h4-VU0" secondAttribute="centerX" id="9yO-bh-iJX"/>
                             <constraint firstItem="Urf-tb-ezb" firstAttribute="top" secondItem="qEK-J2-RyZ" secondAttribute="bottom" constant="25" id="DUY-pE-vIp"/>
                             <constraint firstItem="qEK-J2-RyZ" firstAttribute="centerX" secondItem="XA9-h4-VU0" secondAttribute="centerX" id="MBe-2b-M1h"/>

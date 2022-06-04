@@ -13,13 +13,15 @@ public var numSessions: CGFloat = CGFloat(UserDefaults.standard.value(forKey: "s
 public var stepsLeft = numSessions
 public var actualStatus: SessionStatus = .study
 public var isRunning = true
+public var restartTimer = false
 
 let lineWithActive: CGFloat = 20
 let radiusActive: CGFloat = 80
 
 struct SessionActive: View {
-    @State private var timeRemaining: CGFloat = CGFloat((UserDefaults.standard.value(forKey: "sessionTime") as! Int * 60))
-    @State public var totalTime = CGFloat((UserDefaults.standard.value(forKey: "sessionTime") as! Int * 60))
+    
+    @State private var timeRemaining: CGFloat = CGFloat(((UserDefaults.standard.value(forKey: "sessionTime") ?? Int(25)) as! Int * 60))
+    @State public var totalTime = CGFloat(((UserDefaults.standard.value(forKey: "sessionTime") ?? Int(25)) as! Int * 60))
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -42,6 +44,14 @@ struct SessionActive: View {
             } else {
                 isRunning = false
                 switchStatusOver(status: actualStatus)
+            }
+            
+            if restartTimer == true {
+                actualStatus = .longBreak
+                stepsLeft = CGFloat(UserDefaults.standard.value(forKey: "sessionNumber") as! Int)
+                switchStatusOver(status: actualStatus)
+                isRunning = true
+                restartTimer = false
             }
         })
         

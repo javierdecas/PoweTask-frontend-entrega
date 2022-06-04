@@ -26,7 +26,7 @@ class SessionsConfiguration: UIViewController, UITableViewDataSource, UITableVie
     /**
      * Carga la configuración conservada en la app
      */
-    func loadConfig(){
+    public func loadConfig(){
         
         if UserDefaults.standard.value(forKey: "sessionTime") == nil {
             initializeDefaultConfig()

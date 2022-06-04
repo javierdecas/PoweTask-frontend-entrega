@@ -122,4 +122,8 @@ class SessionsViewController: UIViewController, transferTasksProtocol{
     public func setButtonTitle(title: String){
         pauseButton.setTitle(title, for: .normal)
     }
+    
+    public func restartTimerView(){
+        restartTimer = true
+    }
 }

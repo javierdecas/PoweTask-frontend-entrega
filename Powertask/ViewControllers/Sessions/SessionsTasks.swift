@@ -61,6 +61,7 @@ class SesionsTasks: UIViewController, UITableViewDataSource, UITableViewDelegate
         stepsLeft = CGFloat(UserDefaults.standard.value(forKey: "sessionNumber") as! Int)
         numSessions = CGFloat(UserDefaults.standard.value(forKey: "sessionNumber") as! Int)
         actualStatus = .study
+        restartTimer = true
         isRunning = true
         self.navigationController?.popViewController(animated: true)
         

@@ -226,6 +226,9 @@ class AddTaskViewController: UIViewController {
             configInterfaceWhileEdditiing(isEdditing: true)
             userIsEdditing = true
         }
+        
+        userTask = nil
+
     }
     
     @IBAction func addSubtask(_ sender: Any) {
@@ -302,8 +305,6 @@ class AddTaskViewController: UIViewController {
         if(Int(handoverDatePicker.date.timeIntervalSince1970) != Int(alarmDatePicker.date.timeIntervalSince1970)){
             DateNotification.shared.scheduleSingleNotification(dateToAlert: Int(alarmDatePicker.date.timeIntervalSince1970),dateOfEvent: Int(startDatePicker.date.timeIntervalSince1970), name: userTask!.name, description: userTask!.description, type: ItemType.task, id: 1)
         }
-        
-        userTask = nil
     }
     
     @IBAction func selectSubject(_ sender: Any) {
